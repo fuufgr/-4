@@ -1,53 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ka">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>უნარების სია
-        <script src="https://cdn.tailwindcss.com"></script>
-    </title>
+    <title>Space &amp; Science Facts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-white-950 text-pink min-h-screen flex items-center justify-center p-5">
+<body class="bg-slate-900 text-slate-100 min-h-screen relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
 
-    <main class="w-full max-w-lg bg-white-900 rounded-2xl p-7 shadow-2xl border border-pink-800">
+    <!-- კოსმოსური ფონური დეკორაციები (ვარსკვლავები და პლანეტები) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+        <!-- ნებულას მსუბუქი ნათება -->
+        <div class="absolute -top-24 -left-24 w-80 h-80 bg-indigo-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 -right-20 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl"></div>
 
-        <h1 class="text-3xl font-bold text-center mb-2">
-        </h1>
+        <!-- სატურნის ილუსტრაცია ზედა მარჯვენა კუთხეში -->
+        <svg class="absolute top-6 right-4 sm:right-12 w-28 sm:w-40 opacity-30" viewBox="0 0 160 120" fill="none">
+            <defs>
+                <linearGradient id="planetGrad" x1="40" y1="20" x2="120" y2="100" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#818CF8" />
+                    <stop offset="1" stop-color="#C084FC" />
+                </linearGradient>
+            </defs>
+            <circle cx="80" cy="60" r="34" fill="url(#planetGrad)" />
+            <ellipse cx="80" cy="60" rx="68" ry="16" transform="rotate(-18 80 60)" stroke="#A5B4FC" stroke-width="4" />
+        </svg>
 
-        <p class="text-white-400 text-center mb-7">
-        </p>
+        <!-- პატარა პლანეტა ქვედა მარცხენა კუთხეში -->
+        <svg class="absolute bottom-8 left-4 sm:left-12 w-20 sm:w-28 opacity-25" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="32" fill="#38BDF8" />
+            <circle cx="38" cy="40" r="6" fill="#0284C7" opacity="0.5" />
+            <circle cx="62" cy="58" r="9" fill="#0284C7" opacity="0.4" />
+        </svg>
 
-        <div class="flex gap-2 mb-3">
-            <input id="skill-input" type="text" placeholder="JavaScript"
-                class="flex-1 min-w-0 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 outline-none focus:border-sky-500">
-            <button id="add-btn" class="bg-sky-600 hover:bg-sky-500 px-5 rounded-xl font-semibold">
-            </button>
-        </div>
-        <p id="error-message" class="hidden text-rose-400 text-sm mb-4">
-        </p>
+        <!-- ვარსკვლავები -->
+        <svg class="w-full h-full opacity-60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10%" cy="15%" r="1.5" fill="#FFFFFF" />
+            <circle cx="24%" cy="8%" r="1" fill="#A5B4FC" />
+            <circle cx="42%" cy="22%" r="1.5" fill="#E0E7FF" />
+            <circle cx="68%" cy="12%" r="2" fill="#FFFFFF" />
+            <circle cx="88%" cy="35%" r="1.5" fill="#C4B5FD" />
+            <circle cx="15%" cy="48%" r="1" fill="#FFFFFF" />
+            <circle cx="78%" cy="62%" r="1.5" fill="#93C5FD" />
+            <circle cx="33%" cy="76%" r="2" fill="#FFFFFF" />
+            <circle cx="56%" cy="88%" r="1" fill="#A5B4FC" />
+            <circle cx="92%" cy="84%" r="1.5" fill="#FFFFFF" />
+        </svg>
+    </div>
 
-        <div class="flex justify-between items-center mb-4">
-            <p id="status-message" class="text-sm text-slate-400 font-medium">
+    <!-- მთავარი კონტეინერი -->
+    <div class="relative z-10 max-w-3xl mx-auto px-4 py-8 sm:py-12">
+
+        <!-- 1. Header: ლოგო, აპლიკაციის სახელი და მოკლე აღწერა -->
+        <header class="text-center mb-8">
+            <div class="inline-flex items-center justify-center gap-3 mb-3">
+                <!-- პატარა კოსმოსური ლოგო (SVG რაკეტა) -->
+                <div class="w-11 h-11 rounded-2xl bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center shadow-lg shadow-indigo-500/10">
+                    <svg class="w-6 h-6 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+                    </svg>
+                </div>
+                <h1 class="text-2xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-indigo-300 via-sky-300 to-purple-300 bg-clip-text text-transparent">
+                    Space &amp; Science Facts
+                </h1>
+            </div>
+            <p class="text-slate-400 text-sm sm:text-base max-w-lg mx-auto">
+                აღმოაჩინე კოსმოსის, ასტრონომიისა და მეცნიერების საინტერესო ფაქტები ერთ სივრცეში.
+            </p>
+        </header>
+
+        <!-- 2. ძებნის ველი და კატეგორიების ფილტრი -->
+        <section class="mb-6 space-y-4">
+            <!-- ძებნის ფორმა -->
+            <div class="flex flex-col sm:flex-row gap-2">
+                <input
+                    id="search-input"
+                    type="text"
+                    placeholder="მოძებნე საკვანძო სიტყვით (მაგ: Mars, Black hole, DNA)..."
+                    class="flex-1 bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-400 outline-none focus:border-indigo-400 transition"
+                >
+                <button
+                    id="search-btn"
+                    class="bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white font-medium px-6 py-3 rounded-xl shadow-lg shadow-indigo-900/30 transition cursor-pointer"
+                >
+                    ძებნა
+                </button>
+            </div>
+
+            <!-- კატეგორიების ღილაკები -->
+            <div id="category-filters" class="flex flex-wrap justify-center sm:justify-start gap-2">
+                <button data-category="Space" class="category-btn bg-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-medium border border-indigo-400/40 transition cursor-pointer">
+                    Space
+                </button>
+                <button data-category="Astronomy" class="category-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-1.5 rounded-full text-sm font-medium border border-slate-700 transition cursor-pointer">
+                    Astronomy
+                </button>
+                <button data-category="Physics" class="category-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-1.5 rounded-full text-sm font-medium border border-slate-700 transition cursor-pointer">
+                    Physics
+                </button>
+                <button data-category="Biology" class="category-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-1.5 rounded-full text-sm font-medium border border-slate-700 transition cursor-pointer">
+                    Biology
+                </button>
+                <button data-category="Technology" class="category-btn bg-slate-800 text-slate-300 hover:bg-slate-700 px-4 py-1.5 rounded-full text-sm font-medium border border-slate-700 transition cursor-pointer">
+                    Technology
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. მთავარი ფაქტის ბარათი -->
+        <main id="fact-card" class="bg-slate-800/80 backdrop-blur-md border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-2xl mb-8">
+            <!-- ბარათის ზედა ნაწილი: კატეგორია და სტატუსი -->
+            <div class="flex items-center justify-between gap-2 mb-4">
+                <span id="fact-category" class="bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 text-xs font-semibold px-3 py-1 rounded-full">
+                    Space
+                </span>
+                <span id="status-msg" class="text-xs text-slate-400"></span>
+            </div>
+
+            <!-- ფაქტის სათაური და ტექსტი -->
+            <h2 id="fact-title" class="text-xl sm:text-2xl font-bold text-white mb-3">
+                იტვირთება...
+            </h2>
+            <p id="fact-text" class="text-slate-300 leading-relaxed text-base sm:text-lg mb-6 min-h-[84px]">
+                ფაქტის წამოღება API-დან...
             </p>
 
-            <span class="bg-slate-800 px-3 py-1 rounded-lg">
-                <span id="counter">0</span>
-            </span>
-        </div>
+            <!-- მოქმედების ღილაკები: ახალი ფაქტი, Like, Share -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-700/70">
+                <button
+                    id="new-fact-btn"
+                    class="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 active:scale-95 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-indigo-950/50 transition cursor-pointer"
+                >
+                    ✨ ახალი ფაქტი
+                </button>
 
-        <ul id="skills-list" class="space-y-2 mb-6"></ul>
+                <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                    <button
+                        id="like-btn"
+                        class="flex-1 sm:flex-none bg-slate-700/70 hover:bg-rose-500/20 hover:text-rose-300 border border-slate-600 hover:border-rose-500/40 text-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium transition cursor-pointer"
+                    >
+                        ❤️ მოწონება
+                    </button>
+                    <button
+                        id="share-btn"
+                        class="flex-1 sm:flex-none bg-slate-700/70 hover:bg-sky-500/20 hover:text-sky-300 border border-slate-600 hover:border-sky-500/40 text-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium transition cursor-pointer"
+                    >
+                        🔗 გაზიარება
+                    </button>
+                </div>
+            </div>
+        </main>
 
-        <button id="clear-btn"
-            class="w-full border border-rose-500/40 text-rose-400 hover:bg-rose-500/10 py-3 rounded-xl">
-        </button>
+        <!-- 4. ფავორიტების სექცია -->
+        <section id="favorites-section" class="bg-slate-800/60 backdrop-blur-md border border-slate-700/70 rounded-2xl p-6 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <span>⭐</span> ფავორიტი ფაქტები
+                </h3>
+                <span id="favorites-count" class="bg-slate-700 text-slate-200 text-xs font-semibold px-3 py-1 rounded-full">
+                    0
+                </span>
+            </div>
 
-    </main>
+            <!-- ტექსტი, როცა ფავორიტები ცარიელია -->
+            <p id="empty-favorites" class="text-slate-400 text-sm">
+                ჯერ მოწონებული ფაქტები არ გაქვს. დააჭირე „მოწონება“ ღილაკს შესანახად.
+            </p>
 
+            <!-- მოწონებული ფაქტების სია -->
+            <ul id="favorites-list" class="space-y-3"></ul>
+        </section>
+
+    </div>
+
+    <!-- JavaScript ფაილის მიბმა -->
     <script src="script.js"></script>
 </body>
-
-</html>
 
 </html>
